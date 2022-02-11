@@ -50,7 +50,7 @@ export default class Service {
 
   async editUser() {
     runInAction(() => {
-      this.model.loading = false;
+      this.model.loading = true;
     });
     await editUser({
       name: this.model.data!.name,
