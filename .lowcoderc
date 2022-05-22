@@ -1,0 +1,22 @@
+{
+  "yapi": {
+    "domain": "http://yapi.smart-xwork.cn",
+    "projects": [
+      {
+        "name": "mvp-demo",
+        "token": "d236a39061c30e3068f74e48634d6569348e97a9215b35c87fe9be2d78f003a3",
+        "domain": "http://yapi.smart-xwork.cn"
+      }
+    ]
+  },
+  "mock": {
+    "mockNumber": "Random.natural(1000,1000)",
+    "mockBoolean": "false",
+    "mockString": "Random.cword(5, 7)",
+    "mockKeyWordEqual": [],
+    "mockKeyWordLike": []
+  },
+  "commonlyUsedBlock": [
+    "vue-mvp 模块"
+  ]
+}
