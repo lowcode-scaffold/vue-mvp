@@ -1,3 +1,4 @@
+import { env } from "@/utils/env";
 import { request } from "@/utils/request";
 
 export interface IFetchUserListResult {
@@ -32,7 +33,7 @@ export interface IFetchUserListParams {
  */
 export function fetchUserList(params: IFetchUserListParams) {
   return request<IFetchUserListResult>({
-    url: `http://127.0.0.1:3000/api/user/page`,
+    url: `${env.API_HOST}/api/user/page`,
     method: "GET",
     params,
   });
@@ -62,7 +63,7 @@ export interface ICreateUserData {
  */
 export function createUser(data: ICreateUserData) {
   return request<ICreateUserResult>({
-    url: `http://127.0.0.1:3000/api/user/create`,
+    url: `${env.API_HOST}/api/user/create`,
     method: "POST",
     data,
   });
@@ -93,7 +94,7 @@ export interface IEditUserData {
  */
 export function editUser(data: IEditUserData) {
   return request<IEditUserResult>({
-    url: `http://127.0.0.1:3000/api/user/edit`,
+    url: `${env.API_HOST}/api/user/edit`,
     method: "POST",
     data,
   });
@@ -119,7 +120,7 @@ export interface IDelUserParams {
  */
 export function delUser(params: IDelUserParams) {
   return request<IDelUserResult>({
-    url: `http://127.0.0.1:3000/api/user/del`,
+    url: `${env.API_HOST}/api/user/del`,
     method: "DELETE",
     params,
   });
