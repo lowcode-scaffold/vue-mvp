@@ -50,6 +50,12 @@ const usePresenter = () => {
     });
   };
 
+  const handleCreate = () => {
+    model.modalInfo.visible = true;
+    model.modalInfo.title = "创建";
+    model.modalInfo.data = undefined;
+  };
+
   const refresh = () => {
     service.getUserList();
   };
@@ -62,6 +68,7 @@ const usePresenter = () => {
     handleReset,
     handelEdit,
     handleDel,
+    handleCreate,
     refresh,
   };
 };

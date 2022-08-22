@@ -4,7 +4,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Index",
-    redirect: "/mobx",
+    redirect: "/vue",
   },
   {
     path: "/mobx",
@@ -16,7 +16,9 @@ const routes: Array<RouteRecordRaw> = [
     path: "/vue",
     name: "vue",
     component: () =>
-      import(/* webpackChunkName: "vue" */ "../views/vue/userManage/List"),
+      import(
+        /* webpackChunkName: "vue" */ "../views/vue/userManage/List/index.vue"
+      ),
   },
   {
     path: "/formily",

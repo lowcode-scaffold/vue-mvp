@@ -17,11 +17,12 @@ export default class Service {
       page: this.model.pagination.page,
       size: this.model.pagination.size,
       name: this.model.filterForm.name,
-    }).catch(() => {});
+    }).finally(() => {
+      this.model.loading.value = false;
+    });
     if (res) {
       this.model.userList = res.result.rows;
       this.model.pagination.total = res.result.total;
-      this.model.loading.value = false;
     }
   }
 
@@ -41,7 +42,7 @@ export default class Service {
   }
 
   resetForm() {
-    this.model.filterForm = {} as any;
+    this.model.filterForm.name = "";
     this.model.pagination.page = 1;
     this.model.runFetch.value += 1;
   }
