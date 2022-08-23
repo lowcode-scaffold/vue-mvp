@@ -3,7 +3,9 @@ import { IFetchUserListResult } from "./api";
 
 export const useModel = () => {
   const filterForm = reactive({ name: "" });
-  const userList = reactive<IFetchUserListResult["result"]["rows"]>([]);
+  const userList = reactive<{ value: IFetchUserListResult["result"]["rows"] }>({
+    value: [],
+  });
   const pagination = reactive({
     size: 10,
     page: 1,

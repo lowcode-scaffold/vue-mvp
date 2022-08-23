@@ -24,11 +24,75 @@
             type="primary"
             @click="presenter.handleCreate"
           >
+            <template #icon>
+              <PlusOutlined />
+            </template>
             创建
           </Button>
         </Col>
       </Row>
     </div>
+    <Table
+      :columns="columns"
+      :dataSource="model.userList.value"
+      :loading="model.loading.value"
+      :pagination="false"
+    >
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.key === 'tags'">
+          <Tag v-for="tag in record.tags" :key="tag" color="blue">{{
+            tag
+          }}</Tag>
+        </template>
+        <template v-else-if="column.key === 'action'">
+          <span>
+            <Button type="link" @click="() => presenter.handelEdit(record)">
+              编辑
+            </Button>
+            <Button
+              type="link"
+              danger
+              @click="
+                () => {
+                  presenter.handleDel(record);
+                }
+              "
+            >
+              删除
+            </Button>
+          </span>
+        </template>
+      </template>
+    </Table>
+    <Pagination
+      :current="model.pagination.page"
+      :total="model.pagination.total"
+      showQuickJumper
+      hideOnSinglePage
+      style="margin-top: 20px"
+      :pageSize="model.pagination.size"
+      @change="
+        (page, pageSize) => {
+          presenter.handlePageChange(page, pageSize);
+        }
+      "
+    />
+    <EditModal
+      :visible="model.modalInfo.visible"
+      :data="model.modalInfo.data"
+      :title="model.modalInfo.title"
+      :onCancel="
+        () => {
+          model.modalInfo.visible = false;
+        }
+      "
+      :onOk="
+        () => {
+          model.modalInfo.visible = false;
+          presenter.refresh();
+        }
+      "
+    />
   </div>
 </template>
 <script setup lang="ts">
@@ -46,13 +110,13 @@ import { PlusOutlined } from "@ant-design/icons-vue";
 import usePresenter from "./presenter";
 import styles from "./index.module.less";
 import { ColumnsType } from "ant-design-vue/lib/table";
-import EditModal from "./EditModal";
+import EditModal from "./EditModal/index.vue";
 
 const FormItem = Form.Item;
 
 const presenter = usePresenter();
 const { model } = presenter;
-const culumns: ColumnsType = [
+const columns: ColumnsType = [
   {
     title: "姓名",
     dataIndex: "name",
@@ -83,7 +147,7 @@ const culumns: ColumnsType = [
     width: 300,
   },
   {
-    title: "Action",
+    title: "操作",
     key: "action",
     width: 200,
   },

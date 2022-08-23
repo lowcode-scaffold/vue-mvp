@@ -59,7 +59,7 @@ const Index = defineComponent({
         width: 300,
       },
       {
-        title: "Action",
+        title: "操作",
         key: "action",
         width: 200,
         customRender(data) {
@@ -136,7 +136,7 @@ const Index = defineComponent({
           </div>
           <Table
             columns={this.culumns}
-            dataSource={this.model.userList}
+            dataSource={this.model.userList.value}
             loading={this.model.loading.value}
             pagination={false}
           />

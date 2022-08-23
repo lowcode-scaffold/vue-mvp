@@ -21,7 +21,7 @@ export default class Service {
       this.model.loading.value = false;
     });
     if (res) {
-      this.model.userList = res.result.rows;
+      this.model.userList.value = res.result.rows;
       this.model.pagination.total = res.result.total;
     }
   }
@@ -54,7 +54,7 @@ export default class Service {
 
   edit(data: Model["modalInfo"]["data"]) {
     this.model.modalInfo.action = "edit";
-    this.model.modalInfo.data = data;
+    this.model.modalInfo.data = JSON.parse(JSON.stringify(data));
     this.model.modalInfo.visible = true;
     this.model.modalInfo.title = "编辑";
   }
