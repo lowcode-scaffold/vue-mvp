@@ -12,7 +12,7 @@ const props = {
     required: true,
   },
   onOk: Function as PropType<() => void>,
-  data: Object as PropType<Model["data"]>,
+  data: Object as PropType<Model["state"]["data"]>,
 };
 
 export type Props = ExtractPropTypes<typeof props>;
@@ -42,14 +42,14 @@ const EditModal = defineComponent({
           this.presenter.handleSubmit();
         }}
         okButtonProps={{
-          loading: this.model.loading.value,
+          loading: this.model.value.loading,
         }}
       >
         <div>
           <Form labelCol={{ span: 4 }} wrapperCol={{ span: 16 }}>
             <Form.Item label="姓名" required>
               <Input
-                value={this.model.data?.name}
+                value={this.model.value.data?.name}
                 autocomplete="off"
                 onChange={(e) => {
                   const { value } = e.target;
@@ -59,7 +59,7 @@ const EditModal = defineComponent({
             </Form.Item>
             <Form.Item label="年龄" required>
               <Input
-                value={this.model.data?.age}
+                value={this.model.value.data?.age}
                 autocomplete="off"
                 onChange={(e) => {
                   const { value } = e.target;
@@ -69,7 +69,7 @@ const EditModal = defineComponent({
             </Form.Item>
             <Form.Item label="电话" required>
               <Input
-                value={this.model.data?.mobile}
+                value={this.model.value.data?.mobile}
                 autocomplete="off"
                 onChange={(e) => {
                   const { value } = e.target;
@@ -80,8 +80,8 @@ const EditModal = defineComponent({
             <Form.Item label="tags">
               <Select
                 mode="tags"
-                value={this.model.data?.tags}
-                options={this.model.tagOptions}
+                value={this.model.value.data?.tags}
+                options={this.model.value.tagOptions}
                 onChange={(value) => {
                   this.presenter.handleFormChange("tags", value);
                 }}
@@ -89,7 +89,7 @@ const EditModal = defineComponent({
             </Form.Item>
             <Form.Item label="住址">
               <Input
-                value={this.model.data?.address}
+                value={this.model.value.data?.address}
                 autocomplete="off"
                 onChange={(e) => {
                   const { value } = e.target;

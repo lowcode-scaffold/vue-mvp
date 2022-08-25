@@ -1,12 +1,14 @@
+import { useModel } from "@/views/vanilla/core/useModel";
 import { message } from "ant-design-vue";
 import { watch } from "vue";
 import { Props } from ".";
-import { useModel } from "./model";
+import { Model } from "./model";
 import Service from "./service";
 
 const usePresenter = (props: Props) => {
-  const model = useModel();
+  const model = Model.getSingleton();
   const service = new Service(model);
+  const state = useModel(model);
 
   watch(
     () => props.visible,
@@ -40,7 +42,7 @@ const usePresenter = (props: Props) => {
   };
 
   return {
-    model,
+    model: state,
     service,
     handleFormChange,
     handleSubmit,

@@ -1,18 +1,28 @@
-import { reactive, ref } from "vue";
+import { MVPModel } from "@/views/vanilla/core/model";
 import { IFetchUserListResult } from "../api";
 
-export const useModel = () => {
-  const data = reactive<IFetchUserListResult["result"]["rows"][0]>({} as any);
+export interface IState {
+  data: IFetchUserListResult["result"]["rows"][0];
+  tagOptions: { label: string; value: string }[];
+  loading: boolean;
+}
 
-  const tagOptions = reactive<{ label: string; value: string }[]>([]);
+export class Model extends MVPModel<IState> {
+  private static singleton: Model;
 
-  const loading = ref(false);
+  static getSingleton() {
+    if (!Model.singleton) {
+      Model.singleton = new Model();
+    }
+    return Model.singleton;
+  }
 
-  return {
-    data,
-    tagOptions,
-    loading,
-  };
-};
-
-export type Model = ReturnType<typeof useModel>;
+  constructor() {
+    super();
+    this.state = {
+      data: {} as any,
+      tagOptions: [],
+      loading: false,
+    };
+  }
+}

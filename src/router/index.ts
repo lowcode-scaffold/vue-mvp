@@ -4,7 +4,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Index",
-    redirect: "/vue",
+    redirect: "/vanilla",
   },
   {
     path: "/mobx",

@@ -150,18 +150,18 @@ const Index = defineComponent({
             }}
           />
         </div>
-        {/* <EditModal
-          visible={this.model.modalInfo.visible}
-          data={this.model.modalInfo.data}
-          title={this.model.modalInfo.title}
+        <EditModal
+          visible={this.model.value.modalInfo.visible}
+          data={this.model.value.modalInfo.data}
+          title={this.model.value.modalInfo.title}
           onCancel={() => {
-            this.model.modalInfo.visible = false;
+            this.presenter.closeModal();
           }}
           onOk={() => {
-            this.model.modalInfo.visible = false;
+            this.presenter.closeModal();
             this.presenter.refresh();
           }}
-        /> */}
+        />
       </div>
     );
   },

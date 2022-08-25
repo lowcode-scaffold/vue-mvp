@@ -15,14 +15,14 @@
       }
     "
     :ok-button-props="{
-      loading: model.loading.value,
+      loading: model.value.loading,
     }"
   >
     <div>
       <Form :labelCol="{ span: 4 }" :wrapperCol="{ span: 16 }">
         <FormItem label="姓名" required>
           <Input
-            :value="model.data?.name"
+            :value="model.value.data?.name"
             autocomplete="off"
             @change="
               (e) => {
@@ -33,7 +33,7 @@
         </FormItem>
         <FormItem label="年龄" required>
           <Input
-            :value="model.data?.age"
+            :value="model.value.data?.age"
             autocomplete="off"
             @change="
               (e) => {
@@ -44,7 +44,7 @@
         </FormItem>
         <FormItem label="电话" required>
           <Input
-            :value="model.data?.mobile"
+            :value="model.value.data?.mobile"
             autocomplete="off"
             @change="
               (e) => {
@@ -56,8 +56,8 @@
         <FormItem label="tags">
           <Select
             mode="tags"
-            :value="model.data?.tags"
-            :options="model.tagOptions"
+            :value="model.value.data?.tags"
+            :options="model.value.tagOptions"
             @change="
               (value) => {
                 presenter.handleFormChange('tags', value);
@@ -67,7 +67,7 @@
         </FormItem>
         <FormItem label="住址">
           <Input
-            :value="model.data?.address"
+            :value="model.value.data?.address"
             autocomplete="off"
             @change="
               (e) => {
@@ -98,7 +98,7 @@ const props = defineProps({
     required: true,
   },
   onOk: Function as PropType<() => void>,
-  data: Object as PropType<Model["data"]>,
+  data: Object as PropType<Model["state"]["data"]>,
 });
 
 const presenter = usePresenter(props);

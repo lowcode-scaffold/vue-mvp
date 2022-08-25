@@ -77,22 +77,22 @@
         }
       "
     />
-    <!-- <EditModal
-      :visible="model.modalInfo.visible"
-      :data="model.modalInfo.data"
-      :title="model.modalInfo.title"
+    <EditModal
+      :visible="model.value.modalInfo.visible"
+      :data="model.value.modalInfo.data"
+      :title="model.value.modalInfo.title"
       :onCancel="
         () => {
-          model.modalInfo.visible = false;
+          presenter.closeModal();
         }
       "
       :onOk="
         () => {
-          model.modalInfo.visible = false;
+          presenter.closeModal();
           presenter.refresh();
         }
       "
-    /> -->
+    />
   </div>
 </template>
 <script setup lang="ts">

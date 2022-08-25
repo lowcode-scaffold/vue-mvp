@@ -64,6 +64,12 @@ const usePresenter = () => {
     service.getUserList();
   };
 
+  const closeModal = () => {
+    model.setState((s) => {
+      s.modalInfo.visible = false;
+    });
+  };
+
   return {
     model: state,
     handlePageChange,
@@ -74,6 +80,7 @@ const usePresenter = () => {
     handleDel,
     handleCreate,
     refresh,
+    closeModal,
   };
 };
 
