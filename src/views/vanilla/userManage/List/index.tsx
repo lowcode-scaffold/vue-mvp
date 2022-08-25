@@ -98,7 +98,7 @@ const Index = defineComponent({
               <Col span={8}>
                 <Form.Item label="名称">
                   <Input
-                    value={this.model.filterForm.name}
+                    value={this.model.value.filterForm.name}
                     placeholder="输入名称搜索"
                     onChange={(e) => {
                       this.presenter.handleFormChange("name", e.target.value);
@@ -134,21 +134,23 @@ const Index = defineComponent({
           </div>
           <Table
             columns={this.culumns}
-            dataSource={this.model.userList.value}
-            loading={this.model.loading.value}
+            dataSource={this.model.value.userList}
+            loading={this.model.value.loading}
             pagination={false}
           />
           <Pagination
-            current={this.model.pagination.page}
-            total={this.model.pagination.total}
+            current={this.model.value.pagination.page}
+            total={this.model.value.pagination.total}
             showQuickJumper
             hideOnSinglePage
             style={{ marginTop: "20px" }}
-            pageSize={this.model.pagination.size}
-            onChange={this.presenter.handlePageChange}
+            pageSize={this.model.value.pagination.size}
+            onChange={(page, pageSize) => {
+              this.presenter.handlePageChange(page, pageSize);
+            }}
           />
         </div>
-        <EditModal
+        {/* <EditModal
           visible={this.model.modalInfo.visible}
           data={this.model.modalInfo.data}
           title={this.model.modalInfo.title}
@@ -159,7 +161,7 @@ const Index = defineComponent({
             this.model.modalInfo.visible = false;
             this.presenter.refresh();
           }}
-        />
+        /> */}
       </div>
     );
   },

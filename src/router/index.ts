@@ -34,6 +34,14 @@ const routes: Array<RouteRecordRaw> = [
         /* webpackChunkName: "formily" */ "../views/formily-reactive/userManage/List"
       ),
   },
+  {
+    path: "/vanilla",
+    name: "vanilla",
+    component: () =>
+      import(
+        /* webpackChunkName: "vanilla" */ "../views/vanilla/userManage/List/index.vue"
+      ),
+  },
 ];
 
 const router = createRouter({

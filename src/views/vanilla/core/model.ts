@@ -1,5 +1,5 @@
-import mitt from 'mitt';
-import produce, { freeze } from 'immer';
+import mitt from "mitt";
+import produce, { freeze } from "immer";
 
 const emitter = mitt();
 
@@ -10,17 +10,20 @@ export abstract class MVPModel<T> {
 
   private id = uniqueID();
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   get state() {
     return this._state;
   }
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   protected set state(s: T) {
     this._state = freeze(s, true);
   }
 
   setState(s: UpdateFn<T> | T) {
     let newState: T;
-    if (typeof s === 'function') {
+    if (typeof s === "function") {
       newState = produce(this._state, s as unknown as UpdateFn<T>);
     } else {
       newState = freeze(s, true);
