@@ -7,7 +7,11 @@
 		"build": "vue-cli-service build --mode production",
 		"test:unit": "vue-cli-service test:unit",
 		"test:e2e": "vue-cli-service test:e2e",
-		"lint": "vue-cli-service lint"
+		"format": "prettier --write \"src/**/*.js\" \"src/**/*.jsx\"  \"src/**/*.ts\"  \"src/**/*.tsx\" \"src/**/*.vue\"",
+		"lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix src/",
+		"lint-style": "stylelint \"src/**/*.less\" --fix",
+		"tsc": "vue-tsc --noEmit --skipLibCheck",
+		"prepare": "husky install"
 	},
 	"dependencies": {
 		"@ant-design/icons-vue": "^6.0.1",
@@ -44,10 +48,17 @@
 		"eslint-plugin-prettier": "^3.3.1",
 		"eslint-plugin-react": "^7.28.0",
 		"eslint-plugin-vue": "^7.0.0",
+		"husky": "^7.0.4",
 		"less": "^3.0.4",
 		"less-loader": "^5.0.0",
+		"lint-staged": "^12.0.0",
 		"prettier": "^2.2.1",
-		"typescript": "~4.1.5"
+		"stylelint": "^13.2.1",
+		"stylelint-config-prettier": "^8.0.1",
+		"stylelint-config-standard": "^20.0.0",
+		"stylelint-prettier": "^1.1.2",
+		"typescript": "^4.8.2",
+		"vue-tsc": "^0.40.1"
 	},
 	"yapi-code.domain": "http://yapi.smart-xwork.cn",
 	"yapi-code.project": [
@@ -61,5 +72,12 @@
 	"yapi-code.mockBoolean": "false",
 	"yapi-code.mockString": "Random.cword(5, 7)",
 	"yapi-code.mockKeyWordEqual": {},
-	"yapi-code.mockKeyWordLike": {}
+	"yapi-code.mockKeyWordLike": {},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx,vue}": [
+			"prettier --write",
+			"eslint --fix"
+		],
+		"*.scss": "stylelint --fix"
+	}
 }

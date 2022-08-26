@@ -39,7 +39,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "vanilla",
     component: () =>
       import(
-        /* webpackChunkName: "vanilla" */ "../views/vanilla/userManage/List/index.vue"
+        /* webpackChunkName: "vanilla" */ "../views/vanilla/userManage/List"
       ),
   },
 ];

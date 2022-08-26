@@ -27,7 +27,7 @@ export type Props = ExtractPropTypes<typeof props>;
 const EditModal = defineComponent({
   props: props,
   setup(props) {
-    const presenter = usePresenter(props);
+    const presenter = usePresenter(props as any);
     const { model } = presenter;
 
     return {
