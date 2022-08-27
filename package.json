@@ -78,6 +78,6 @@
 			"prettier --write",
 			"eslint --fix"
 		],
-		"*.scss": "stylelint --fix"
+		"*.less": "stylelint --fix"
 	}
 }
