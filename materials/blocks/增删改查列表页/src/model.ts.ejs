@@ -1,0 +1,61 @@
+import { reactive, ref } from "vue";
+
+interface ITableListItem {
+	<% columns.map((item, index) => { _%>
+		<%= item.key || `column${index+1}` %>: string;
+	<% }) _%>
+}
+
+interface IFormData {
+	<% filters.map(item => { _%>
+		<%= item.key %>?: string;
+	<% }) _%>
+}
+<% if(filters.some(s => s.component === "select" )){ %>
+interface IOptionItem {
+  label: string;
+  value: string;
+}
+
+interface IOptions {
+  <% filters.filter(s => s.component === "select").map(item => { _%>
+	<%= item.key %>: IOptionItem[],
+  <% }) _%>
+}
+
+const defaultOptions: IOptions = {
+	<% filters.filter(s => s.component === "select").map(item => { _%>
+		<%= item.key %>: [],
+	<% }) _%>
+};
+<% } %>
+const defaultFormData: IFormData = {
+	<% filters.map(item => { _%>
+		<%= item.key %>: undefined,
+	<% }) _%>
+};
+
+export const useModel = () => {
+  const filterForm = reactive<IFormData>(defaultFormData);
+	<% if(filters.some(s => s.component === "select" )){ %>
+  const options = reactive<IOptions>(defaultOptions);
+	<% } %>
+  const tableList = ref<(ITableListItem & { [propName: string]: unknown })[]>(
+    [],
+  );
+
+  const loading = reactive<{ list: boolean }>({
+    list: false,
+  });
+
+  return {
+    filterForm,
+		<% if(filters.some(s => s.component === "select" )){ _%>
+    options,
+		<% } _%>
+    tableList,
+    loading,
+  };
+};
+
+export type Model = ReturnType<typeof useModel>;

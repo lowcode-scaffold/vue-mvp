@@ -1,0 +1,24 @@
+import { <%= fetchName %> } from "./api";
+import { Model } from "./model"; 
+
+export default class Service {
+  private model: Model;
+
+  constructor(model: Model) {
+    this.model = model;
+  }
+
+  async <%= serviceName %>() {
+    this.model.loading.list = true;
+    const res = await <%= fetchName %>({}).finally(() => {
+      this.model.loading.list = false;
+    });
+    this.model.tableList.value = res.result.map((s) => {
+      return {
+		<% columns.map((item, index) => { _%>
+			<%= item.key || `column${index+1}` %>: s.<%= item.key || `column${index+1}` %>,
+		<% }) _%>
+      };
+    });
+  }
+}

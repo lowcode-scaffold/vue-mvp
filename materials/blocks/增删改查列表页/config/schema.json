@@ -1,0 +1,93 @@
+{
+	"type": "object",
+	"column": 1,
+	"labelWidth": 120,
+	"displayType": "column",
+	"properties": {
+		"filters": {
+			"title": "查询条件",
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"key": {
+						"title": "字段",
+						"type": "string",
+						"props": {},
+						"displayType": "column"
+					},
+					"label": {
+						"title": "label",
+						"type": "string",
+						"displayType": "column",
+						"props": {}
+					},
+					"component": {
+						"title": "组件",
+						"type": "string",
+						"enum": [
+							"input",
+							"select"
+						],
+						"enumNames": [
+							"input",
+							"select"
+						],
+						"widget": "select",
+						"displayType": "column"
+					},
+					"placeholder": {
+						"title": "placeholder",
+						"type": "string",
+						"displayType": "column",
+						"props": {}
+					}
+				}
+			},
+			"props": {},
+			"displayType": "column"
+		},
+		"columns": {
+			"title": "表格",
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"title": {
+						"title": "title",
+						"type": "string",
+						"props": {}
+					},
+					"dataIndex": {
+						"title": "dataIndex",
+						"type": "string",
+						"props": {}
+					},
+					"key": {
+						"title": "key",
+						"type": "string",
+						"props": {}
+					},
+					"width": {
+						"title": "width",
+						"type": "string",
+						"props": {}
+					}
+				}
+			},
+			"props": {}
+		},
+		"fetchName": {
+			"title": "请求名称",
+			"type": "string",
+			"default": "fetchTableList",
+			"props": {}
+		},
+		"serviceName": {
+			"title": "service方法名",
+			"type": "string",
+			"default": "getTableList",
+			"props": {}
+		}
+	}
+}

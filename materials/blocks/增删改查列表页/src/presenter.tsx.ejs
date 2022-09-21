@@ -1,0 +1,47 @@
+import Service from "./service";
+import { useModel } from "./model";
+import { createVNode, onMounted } from "vue";
+import { message, Modal } from "ant-design-vue";
+import { ExclamationCircleOutlined } from "@ant-design/icons-vue";
+
+export const usePresenter = () => {
+  const model = useModel();
+  const service = new Service(model);
+
+  onMounted(() => {
+    service.getTableList();
+  });
+
+  const handleClear = () => {
+    model.filterForm = {};
+    service.getTableList();
+  };
+
+  const handleSearch = () => {
+    service.getTableList();
+  };
+
+  const handleCreate = () => {};
+
+  const handleDel = (record: typeof model.tableList.value[0]) => {
+    Modal.confirm({
+      title: "此操作将删除该选项，是否继续？",
+      icon: createVNode(ExclamationCircleOutlined),
+      onOk() {
+        message.success("删除成功");
+      },
+    });
+  };
+
+  const handleEdit = (record: typeof model.tableList.value[0]) => {};
+
+  return {
+    model,
+    service,
+    handleClear,
+    handleSearch,
+    handleCreate,
+    handleDel,
+    handleEdit,
+  };
+};

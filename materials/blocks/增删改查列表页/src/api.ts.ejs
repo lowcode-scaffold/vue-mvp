@@ -1,0 +1,29 @@
+import { request } from "@/utils/request";
+
+// #region
+export interface I<%= fetchName.slice(0, 1).toUpperCase() + fetchName.slice(1) %>Result {
+   code: number;
+	 msg: string;
+	 result: {
+    <% columns.map((item, index) => { _%>
+			<%= item.key || `column${index+1}` %>: string;
+		<% }) _%>
+	 }[];
+}
+
+export interface I<%= fetchName.slice(0, 1).toUpperCase() + fetchName.slice(1) %>Params {
+	<% filters.map(item => { _%>
+		<%= item.key %>?: string;
+	<% }) _%>
+}
+
+export function <%= fetchName %>(
+params: I<%= fetchName.slice(0, 1).toUpperCase() + fetchName.slice(1) %>Params
+) {
+return request<I<%= fetchName.slice(0, 1).toUpperCase() + fetchName.slice(1) %>Result>({
+	url: `xxx`, 
+	method: 'GET',
+	params,
+});
+}
+// #endregion

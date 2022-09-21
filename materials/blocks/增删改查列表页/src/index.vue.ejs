@@ -1,0 +1,97 @@
+<template>
+  <div>
+    <a-row :gutter="24">
+		<% filters.map(item => { _%>
+			<% if(item.component === "select") { %>
+				<a-col :span="6">
+					<a-form-item label="<%= item.label %>">
+					  <a-select
+						v-model:value="model.filterForm.<%= item.key %>"
+						:options="model.options.<%= item.key %>"
+						placeholder="<%= item.placeholder %>"
+						allow-clear
+					  ></a-select>
+					</a-form-item>
+				  </a-col>
+			<% } _%>
+			<% if(item.component === "input") { _%>
+				<a-col :span="6">
+					<a-form-item label="<%= item.label %>">
+					  <a-input
+						v-model:value="model.filterForm.<%= item.key %>"
+						placeholder="<%= item.placeholder %>"
+						allow-clear
+					  ></a-input>
+					</a-form-item>
+				  </a-col>
+			<% } _%>
+		<% }) _%>
+    </a-row>
+    <a-row>
+      <a-col :span="24" style="text-align: right">
+        <a-space>
+          <a-button @click="presenter.handleClear">清除</a-button>
+          <a-button @click="presenter.handleSearch" type="primary"
+            >查询</a-button
+          >
+          <a-button @click="presenter.handleCreate" type="primary"
+            ><template #icon><PlusOutlined /> </template>新增</a-button
+          >
+        </a-space>
+      </a-col>
+    </a-row>
+    <a-table
+      style="margin-top: 10px"
+      :loading="model.loading.list"
+      :columns="columns"
+      :data-source="model.tableList.value"
+      :pagination="false"
+    >
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.key === 'operation'">
+          <a-space>
+            <a-button
+              type="primary"
+              size="small"
+              @click="
+                () => {
+                  presenter.handleEdit(record);
+                }
+              "
+              >编辑</a-button
+            >
+            <a-button
+              type="primary"
+              danger
+              size="small"
+              @click="
+                () => {
+                  presenter.handleDel(record);
+                }
+              "
+              >删除</a-button
+            >
+          </a-space>
+        </template>
+      </template></a-table
+    >
+  </div>
+</template>
+<script lang="ts" setup>
+import { PlusOutlined } from "@ant-design/icons-vue";
+import { usePresenter } from "./presenter";
+
+const presenter = usePresenter();
+const { model } = presenter;
+
+const columns = [
+  <% columns.map((item, index) => { _%>
+		{
+      title: "<%= item.title || `column${index+1}` %>",
+			dataIndex: "<%= item.dataIndex || `column${index+1}` %>",
+			key: "<%= item.key || `column${index+1}` %>",
+			<% if(item.width) {%>width: "<%= item.width %>",<% } _%>
+		},
+	<% }) _%>
+];
+</script>
