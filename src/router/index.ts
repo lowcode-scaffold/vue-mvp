@@ -42,6 +42,14 @@ const routes: Array<RouteRecordRaw> = [
         /* webpackChunkName: "vanilla" */ "../views/vanilla/userManage/List"
       ),
   },
+  {
+    path: "/definePropsAndEmit",
+    name: "definePropsAndEmit",
+    component: () =>
+      import(
+        /* webpackChunkName: "definePropsAndEmit" */ "../views/vue/DefinePropsAndEmit/index.vue"
+      ),
+  },
 ];
 
 const router = createRouter({

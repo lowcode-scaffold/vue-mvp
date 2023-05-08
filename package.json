@@ -23,7 +23,7 @@
 		"immer": "^9.0.15",
 		"mitt": "^3.0.0",
 		"mobx": "^6.3.12",
-		"vue": "^3.0.0",
+		"vue": "^3.2.47",
 		"vue-router": "^4.0.0-0"
 	},
 	"devDependencies": {
@@ -38,7 +38,7 @@
 		"@vue/cli-plugin-typescript": "~4.5.0",
 		"@vue/cli-plugin-unit-mocha": "~4.5.0",
 		"@vue/cli-service": "~4.5.0",
-		"@vue/compiler-sfc": "^3.0.0",
+		"@vue/compiler-sfc": "^3.2.47",
 		"@vue/eslint-config-prettier": "^6.0.0",
 		"@vue/eslint-config-typescript": "^7.0.0",
 		"@vue/test-utils": "^2.0.0-0",
