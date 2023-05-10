@@ -1,9 +1,6 @@
 <template>
   <div>
-    <Title
-      name="如何定义 props 和 emit"
-      @update="presenter.handleUpdate"
-    ></Title>
+    <Title @update="presenter.handleUpdate"></Title>
   </div>
 </template>
 <script setup lang="ts">

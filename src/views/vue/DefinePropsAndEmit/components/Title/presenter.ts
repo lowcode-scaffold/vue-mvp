@@ -1,14 +1,11 @@
 import Service from "./service";
 import { useModel } from "./model";
-
-export interface IProps {
+interface IProps {
   name: string;
 }
-
-export interface IEmit {
+interface IEmit {
   (event: "update", name: string): void;
 }
-
 export const usePresenter = (props: IProps, emit: IEmit) => {
   const model = useModel();
   const service = new Service(model);
