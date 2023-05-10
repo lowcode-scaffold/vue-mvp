@@ -1,6 +1,13 @@
 import Service from "./service";
 import { useModel } from "./model";
-import { IEmit, IProps } from "./index.vue";
+
+export interface IProps {
+  name: string;
+}
+
+export interface IEmit {
+  (event: "update", name: string): void;
+}
 
 export const usePresenter = (props: IProps, emit: IEmit) => {
   const model = useModel();

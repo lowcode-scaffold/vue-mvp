@@ -2,19 +2,17 @@
   <div @click="presenter.handleClick">{{ props.name }}</div>
 </template>
 <script setup lang="ts">
-import { usePresenter } from "./presenter";
+import { usePresenter, IProps, IEmit } from "./presenter";
 
-export interface IProps {
-  name: string;
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface Props extends IProps {}
 
-export interface IEmit {
-  (event: "update", name: string): void;
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface Emit extends IEmit {}
 
-const props = defineProps<IProps>();
+const props = defineProps<Props>();
 
-const emit = defineEmits<IEmit>();
+const emit = defineEmits<Emit>();
 
 const presenter = usePresenter(props, emit);
 const { model } = presenter;
