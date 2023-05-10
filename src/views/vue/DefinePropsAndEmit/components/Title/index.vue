@@ -2,7 +2,15 @@
   <div @click="presenter.handleClick">{{ props.name }}</div>
 </template>
 <script setup lang="ts">
-import { IProps, usePresenter, IEmit } from "./presenter";
+import { usePresenter } from "./presenter";
+
+export interface IProps {
+  name: string;
+}
+
+export interface IEmit {
+  (event: "update", name: string): void;
+}
 
 const props = defineProps<IProps>();
 
