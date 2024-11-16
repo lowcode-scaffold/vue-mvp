@@ -13,6 +13,9 @@
       <Button @click="presenter.handleGetMac">获取 mac 地址</Button>
       <Button @click="presenter.handleMinimi">最小化窗口</Button>
       <Button @click="presenter.handleMaximize">最大化窗口</Button>
+      <Button @click="presenter.handleLockScreen">锁屏</Button>
+      <Button @click="presenter.handleRoute">路由跳转</Button>
+      <Button @click="presenter.handleOpen">新标签页</Button>
     </Space>
     <Alert
       style="margin-top: 10px"
