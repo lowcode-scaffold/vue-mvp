@@ -1,3 +1,8 @@
+import {
+  getIframeId,
+  setIframeId,
+  updateTitle,
+} from "@/utils/electronWebService";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
@@ -17,6 +22,9 @@ const routes: Array<RouteRecordRaw> = [
     name: "vue",
     component: () =>
       import(/* webpackChunkName: "vue" */ "../views/vue/userManage/List"),
+    meta: {
+      title: "vue-mvp|vue",
+    },
   },
   {
     path: "/vue/template",
@@ -25,6 +33,9 @@ const routes: Array<RouteRecordRaw> = [
       import(
         /* webpackChunkName: "vue-template" */ "../views/vue/userManage/List/index.vue"
       ),
+    meta: {
+      title: "vue-mvp|vue-template",
+    },
   },
   {
     path: "/formily",
@@ -41,6 +52,9 @@ const routes: Array<RouteRecordRaw> = [
       import(
         /* webpackChunkName: "vanilla" */ "../views/vanilla/userManage/List"
       ),
+    meta: {
+      title: "vue-mvp|vanilla",
+    },
   },
   {
     path: "/definePropsAndEmit",
@@ -49,12 +63,38 @@ const routes: Array<RouteRecordRaw> = [
       import(
         /* webpackChunkName: "definePropsAndEmit" */ "../views/vue/DefinePropsAndEmit/index.vue"
       ),
+    meta: {
+      title: "vue-mvp|definePropsAndEmit",
+    },
+  },
+  {
+    path: "/electronWebService",
+    name: "electronWebService",
+    component: () =>
+      import(
+        /* webpackChunkName: "electronWebService" */ "../views/electronWebService/index.vue"
+      ),
+    meta: {
+      title: "vue-mvp|electronWebService",
+    },
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.query.iframeId && !getIframeId()) {
+    setIframeId(to.query.iframeId as string);
+  }
+  next();
+});
+
+router.afterEach((to, from) => {
+  document.title = (to.meta.title as string) || "vue-mvp";
+  updateTitle(document.title);
 });
 
 export default router;
